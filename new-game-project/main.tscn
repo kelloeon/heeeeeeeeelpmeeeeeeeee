@@ -1,0 +1,115 @@
+[gd_scene format=4 uid="uid://jwfduoexfx8a"]
+
+[ext_resource type="Image" uid="uid://dap25s615soq7" path="res://Node3D/Color_0_0.res" id="1_1bvp3"]
+[ext_resource type="Image" uid="uid://biwpi1wdyhodh" path="res://Node3D/Heightmap_0_0.res" id="2_lquwl"]
+[ext_resource type="Script" uid="uid://41byta3erqsa" path="res://terra_brush.gd" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://chn2d31l0vj3f" path="res://player.tscn" id="4_272bh"]
+
+[sub_resource type="Shader" id="Shader_i5arm"]
+code = "shader_type spatial;
+render_mode cull_back,blend_mix,depth_draw_opaque,diffuse_burley,specular_schlick_ggx;
+
+#include \"res://addons/terrabrush/Resources/Shaders/heightmap_clipmap_shader_include.gdshaderinc\"
+
+varying vec3 _worldVertex;
+varying vec3 _worldNormal;
+varying vec3 _triplanarPos;
+varying vec3 _triplanarPowerNormal;
+
+void vertex() {
+	_worldVertex = vec3(0);
+	_worldNormal = vec3(0);
+	_triplanarPos = vec3(0);
+	_triplanarPowerNormal = vec3(0);
+	calculateHeightmapVertex(
+		MODEL_MATRIX,
+		COLOR,
+		VERTEX,
+		NORMAL,
+		_worldVertex,
+		_worldNormal,
+		_triplanarPos,
+		_triplanarPowerNormal
+	);
+}
+
+void fragment() {
+	calculateHeightmapFragment(
+		_worldVertex,
+		_worldNormal,
+		_triplanarPos,
+		_triplanarPowerNormal,
+		ALBEDO,
+		NORMAL_MAP,
+		METALLIC,
+		SPECULAR,
+		ROUGHNESS
+	);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wc5p8"]
+render_priority = 0
+shader = SubResource("Shader_i5arm")
+shader_parameter/InitialCellWidth = 1.0
+shader_parameter/OffsetPosition = Vector3(0, 0, 0)
+shader_parameter/ZonesSize = 0.0
+shader_parameter/Resolution = 0.0
+shader_parameter/NumberOfZones = 0.0
+shader_parameter/ApplyLockTextures = false
+shader_parameter/WaterFactor = 1.0
+shader_parameter/TexturesDetail = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/NumberOfTextures = 0
+shader_parameter/HasNormalTextures = false
+shader_parameter/HasRoughnessTextures = false
+shader_parameter/HasHeightTextures = false
+shader_parameter/UseAntitile = true
+shader_parameter/BlendFactor = 0.0
+shader_parameter/NearestFilter = false
+shader_parameter/AlbedoAlphaChannelUsage = 0
+shader_parameter/NormalAlphaChannelUsage = 0
+shader_parameter/Triplanar = true
+shader_parameter/TexturesTriplanar = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/TexturesMetallic = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/TexturesSpecular = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/UseSharpTransitions = false
+shader_parameter/SlopeTexturing = false
+shader_parameter/SlopeTextureIndex = 1
+shader_parameter/SlopeTextureThreshold = 0.2
+shader_parameter/ApplyMetaInfoTextures = false
+shader_parameter/MetaInfoColors = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="TextureSetsResource" id="TextureSetsResource_a0tk4"]
+
+[sub_resource type="ZoneResource" id="ZoneResource_jsk3o"]
+heightMapImage = ExtResource("2_lquwl")
+colorImage = ExtResource("1_1bvp3")
+
+[sub_resource type="ZonesResource" id="ZonesResource_4arys"]
+zones = Array[ZoneResource]([SubResource("ZoneResource_jsk3o")])
+
+[node name="Main" type="Node" unique_id=589373487]
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1824559126]
+
+[node name="TerraBrush" type="TerraBrush" parent="Node3D" unique_id=1304736678]
+dataPath = "res://Node3D"
+collisionOnly = true
+customShader = SubResource("ShaderMaterial_wc5p8")
+textureSets = SubResource("TextureSetsResource_a0tk4")
+showMetaInfo = true
+terrainZones = SubResource("ZonesResource_4arys")
+physics_interpolation_mode = 2
+script = ExtResource("3_7mycd")
+metadata/_edit_lock_ = false
+
+[node name="Player" parent="." unique_id=282311042 instance=ExtResource("4_272bh")]
+
+[node name="CameraPivot" type="Marker3D" parent="Player" unique_id=991598187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.918169, -4.2319736, -13.664522)
+
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot" unique_id=73570569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 45.85196, 30.002604, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=691560891]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 30.278427, 68.48486, 42.08979)
+shadow_enabled = true

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://chn2d31l0vj3f"]
+
+[ext_resource type="Script" uid="uid://bojw1rhbb0k53" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://bkv3841q3nmu8" path="res://art assets/fatbeast.glb" id="2_onrkg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onrkg"]
+
+[node name="Player" type="CharacterBody3D" unique_id=282311042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.942764, 19.491783, 13.664522)
+script = ExtResource("1_4flbx")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1200015767]
+
+[node name="fatbeast" parent="Pivot" unique_id=1921414410 instance=ExtResource("2_onrkg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=168767338]
+shape = SubResource("SphereShape3D_onrkg")

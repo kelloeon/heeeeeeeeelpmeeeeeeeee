@@ -1,8 +1,13 @@
-[gd_scene format=4 uid="uid://jwfduoexfx8a"]
+[gd_scene format=4 uid="uid://c1vmlqrddlmme"]
 
 [ext_resource type="Image" uid="uid://dap25s615soq7" path="res://Node3D/Color_0_0.res" id="1_a0tk4"]
 [ext_resource type="Image" uid="uid://biwpi1wdyhodh" path="res://Node3D/Heightmap_0_0.res" id="2_r3fl7"]
 [ext_resource type="Script" uid="uid://41byta3erqsa" path="res://terra_brush.gd" id="3_jka67"]
+[ext_resource type="PackedScene" uid="uid://chn2d31l0vj3f" path="res://player.tscn" id="4_r3fl7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
 
 [sub_resource type="Shader" id="Shader_i5arm"]
 code = "shader_type spatial;
@@ -86,9 +91,20 @@ colorImage = ExtResource("1_a0tk4")
 [sub_resource type="ZonesResource" id="ZonesResource_4arys"]
 zones = Array[ZoneResource]([SubResource("ZoneResource_jsk3o")])
 
-[node name="Node3D" type="Node3D" unique_id=1824559126]
+[node name="Main" type="Node" unique_id=589373487]
 
-[node name="TerraBrush" type="TerraBrush" parent="." unique_id=1304736678]
+[node name="Node3D" type="Node3D" parent="." unique_id=1824559126]
+
+[node name="Ground" type="StaticBody3D" parent="Node3D" unique_id=1355490225]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ground" unique_id=674979454]
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Ground" unique_id=1839287779]
+mesh = SubResource("BoxMesh_lquwl")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="TerraBrush" type="TerraBrush" parent="Node3D" unique_id=1304736678]
 dataPath = "res://Node3D"
 collisionOnly = true
 customShader = SubResource("ShaderMaterial_wc5p8")
@@ -97,4 +113,16 @@ showMetaInfo = true
 terrainZones = SubResource("ZonesResource_4arys")
 physics_interpolation_mode = 2
 script = ExtResource("3_jka67")
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
+
+[node name="Player" parent="." unique_id=282311042 instance=ExtResource("4_r3fl7")]
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=991598187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.69101, 4.9819965, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=73570569]
+transform = Transform3D(1.2829354, 0, 0, 0, 1, 0, 0, 0, -1, 45.85196, 30.002602, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=691560891]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 30.278427, 68.48486, 42.08979)
+shadow_enabled = true
