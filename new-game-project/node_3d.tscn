@@ -97,4 +97,3 @@ showMetaInfo = true
 terrainZones = SubResource("ZonesResource_4arys")
 physics_interpolation_mode = 2
 script = ExtResource("3_jka67")
-metadata/_edit_lock_ = true
