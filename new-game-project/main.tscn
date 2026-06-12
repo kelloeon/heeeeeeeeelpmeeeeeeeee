@@ -100,15 +100,10 @@ showMetaInfo = true
 terrainZones = SubResource("ZonesResource_4arys")
 physics_interpolation_mode = 2
 script = ExtResource("3_7mycd")
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=282311042 instance=ExtResource("4_272bh")]
-
-[node name="CameraPivot" type="Marker3D" parent="Player" unique_id=991598187]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.918169, -4.2319736, -13.664522)
-
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot" unique_id=73570569]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 45.85196, 30.002604, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.326668, 37.111706, 13.664522)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=691560891]
 transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 30.278427, 68.48486, 42.08979)

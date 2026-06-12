@@ -12,6 +12,14 @@ script = ExtResource("1_4flbx")
 [node name="Pivot" type="Node3D" parent="." unique_id=1200015767]
 
 [node name="fatbeast" parent="Pivot" unique_id=1921414410 instance=ExtResource("2_onrkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.542137, -19.080042, -12.735294)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=168767338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.21178, -22.97929, -7.5967865)
 shape = SubResource("SphereShape3D_onrkg")
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=1318343257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.272505, -13.522492, -14.296944)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=176010230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -16.277594, -0.09972191, 0.32233047)

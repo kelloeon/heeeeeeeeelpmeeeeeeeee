@@ -115,14 +115,9 @@ physics_interpolation_mode = 2
 script = ExtResource("3_jka67")
 metadata/_edit_lock_ = false
 
-[node name="Player" parent="." unique_id=282311042 instance=ExtResource("4_r3fl7")]
-
-[node name="CameraPivot" type="Marker3D" parent="." unique_id=991598187]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.69101, 4.9819965, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=73570569]
-transform = Transform3D(1.2829354, 0, 0, 0, 1, 0, 0, 0, -1, 45.85196, 30.002602, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=691560891]
 transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 30.278427, 68.48486, 42.08979)
 shadow_enabled = true
+
+[node name="Player" parent="." unique_id=282311042 instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.79678, 38.35425, 13.664522)
