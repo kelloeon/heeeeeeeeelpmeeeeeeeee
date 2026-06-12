@@ -113,7 +113,7 @@ showMetaInfo = true
 terrainZones = SubResource("ZonesResource_4arys")
 physics_interpolation_mode = 2
 script = ExtResource("3_jka67")
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=282311042 instance=ExtResource("4_r3fl7")]
 
