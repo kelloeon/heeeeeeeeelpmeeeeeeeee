@@ -25,8 +25,14 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
+directories/dch_directory={
+"character": "res://character.dch"
+}
+directories/dtl_directory={
+"art assets/timeline": "res://art assets/timeline.dtl",
+"timeline": "res://timeline.dtl",
+"timeline2": "res://timeline2.dtl"
+}
 layout/style_directory={}
 
 [dotnet]

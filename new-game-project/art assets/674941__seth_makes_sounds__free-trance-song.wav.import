@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cd72r82j5a4f0"
+path="res://.godot/imported/674941__seth_makes_sounds__free-trance-song.wav-59c8e24ae5ee36870d0e6240145a7554.sample"
+
+[deps]
+
+source_file="res://art assets/674941__seth_makes_sounds__free-trance-song.wav"
+dest_files=["res://.godot/imported/674941__seth_makes_sounds__free-trance-song.wav-59c8e24ae5ee36870d0e6240145a7554.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

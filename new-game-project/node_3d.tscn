@@ -9,7 +9,7 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
 
-[sub_resource type="Shader" id="Shader_i5arm"]
+[sub_resource type="Shader" id="Shader_a0tk4"]
 code = "shader_type spatial;
 render_mode cull_back,blend_mix,depth_draw_opaque,diffuse_burley,specular_schlick_ggx;
 
@@ -51,9 +51,9 @@ void fragment() {
 	);
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wc5p8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3fl7"]
 render_priority = 0
-shader = SubResource("Shader_i5arm")
+shader = SubResource("Shader_a0tk4")
 shader_parameter/InitialCellWidth = 1.0
 shader_parameter/OffsetPosition = Vector3(0, 0, 0)
 shader_parameter/ZonesSize = 0.0
@@ -107,7 +107,7 @@ skeleton = NodePath("../CollisionShape3D")
 [node name="TerraBrush" type="TerraBrush" parent="Node3D" unique_id=1304736678]
 dataPath = "res://Node3D"
 collisionOnly = true
-customShader = SubResource("ShaderMaterial_wc5p8")
+customShader = SubResource("ShaderMaterial_r3fl7")
 textureSets = SubResource("TextureSetsResource_a0tk4")
 showMetaInfo = true
 terrainZones = SubResource("ZonesResource_4arys")
